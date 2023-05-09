@@ -27,60 +27,60 @@ class Details extends StatelessWidget {
                         child: Column(
                           children: [
                             Text(
-                              "Id No : ${dataModel.idNo!}",
+                              "Id No : ${dataModel.idNo}",
                               style: TextStyle(color: Colors.brown),
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             Text(
-                              "Vat No : ${dataModel.vatNo!}",
+                              "Vat No : ${dataModel.vatNo}",
                               style: TextStyle(color: Colors.brown),
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             Text(
-                              "Reg No : ${dataModel.regNo!}",
+                              "Reg No : ${dataModel.regNo}",
                               style: TextStyle(color: Colors.brown),
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             Text(
-                              "Category : ${dataModel.category!}",
+                              "Category : ${dataModel.category}",
                               style: TextStyle(color: Colors.brown),
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             Text(
-                              "Bussiness Name : ${dataModel.businessName!}",
+                              "Bussiness Name : ${dataModel.businessName}",
                               style: TextStyle(color: Colors.brown),
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             Text(
-                              "Email : ${dataModel.email!}",
+                              "Email : ${dataModel.email}",
                               style: TextStyle(color: Colors.brown),
                             ),
                             Text(
-                              "Phone No : ${dataModel.phone!}",
+                              "Phone No : ${dataModel.phone}",
                               style: TextStyle(color: Colors.brown),
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             Text(
-                              "Note : ${dataModel.note!}",
+                              "Note : ${dataModel.note}",
                               style: TextStyle(color: Colors.brown),
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             Image.network(
-                                "$baseurl${dataModel.backgroundImagePath!}",height: 80,width: 80,),
+                                "$baseurl${dataModel.backgroundImagePath}",height: 80,width: 80,),
                             SizedBox(
                               height: 10,
                             ),

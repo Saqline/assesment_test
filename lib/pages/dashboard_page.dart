@@ -13,22 +13,24 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  DataModel? dataModel;
+   DataModel? dataModel;
   bool isLoaded = false;
 
   getData() async {
-    dataModel = await DataProvider().getData();
-    
+    dataModel = (await DataProvider().getData())!;
+
     setState(() {
       isLoaded = true;
     });
   }
 
   String baseurl = 'https://admin.cashsmarts.co.uk';
+  
 
   @override
   void initState() {
     getData();
+    super.initState();
   }
 
   @override
@@ -44,37 +46,44 @@ class _DashboardState extends State<Dashboard> {
         ),
         child: SingleChildScrollView(
           child: Column(
-            
             children: [
               SizedBox(
                 height: 10,
               ),
-              Text('Highlight = 1 are:',style: TextStyle(fontWeight: FontWeight.bold),),
+              Text(
+                'Highlight = 1 are:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               SizedBox(
                 height: 8,
               ),
-              Divider(height: 3,),
+              Divider(
+                height: 3,
+              ),
               SizedBox(
-                height: 80,
+                height: 100,
                 child: ListView.separated(
+                  shrinkWrap: true,
                   padding: EdgeInsets.all(12),
                   scrollDirection: Axis.horizontal,
-                  itemCount: dataModel!.data.length,
+                  itemCount: dataModel?.data.length ?? 0,
                   itemBuilder: (_, index) {
-                    return dataModel!.data[index].highlight == 1
+                    return dataModel?.data[index].highlight == 1
                         ? Center(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Id No:${dataModel!.data[index].idNo!}"),
+                                Text("Id No:${dataModel?.data[index].idNo ?? 0}"),
                                 ElevatedButton(
-                                  onPressed: () {
+                                  onPressed: () async{
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => Details(
                                                 dataModel!.data[index])));
+                                  
+                
                                   },
                                   child: Text(
                                     "Click for More Details",
@@ -87,7 +96,7 @@ class _DashboardState extends State<Dashboard> {
                         : Text('');
                   },
                   separatorBuilder: (BuildContext context, int index) {
-                    return dataModel!.data[index].highlight == 1
+                    return dataModel?.data[index].highlight == 1
                         ? SizedBox(
                             width: 12,
                           )
@@ -97,77 +106,87 @@ class _DashboardState extends State<Dashboard> {
                   },
                 ),
               ),
-               SizedBox(height: 15,),
-               Text('Highlight = 0 are:',style: TextStyle(fontWeight: FontWeight.bold),),
-          SizedBox(height: 5,),
-          Divider(height: 3,),
+              SizedBox(
+                height: 15,
+              ),
+              Text(
+                'Highlight = 0 are:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Divider(
+                height: 3,
+              ),
               SizedBox(
                 height: 350,
                 child: ListView.separated(
+                  shrinkWrap: true,
                   padding: EdgeInsets.all(12),
                   scrollDirection: Axis.vertical,
-                  itemCount: dataModel!.data.length,
+                  itemCount: dataModel?.data.length?? 0,
                   itemBuilder: (_, index) {
-                    return dataModel!.data[index].highlight == 0
+                    return dataModel?.data[index].highlight == 0
                         ? Title(
                             color: Colors.black,
                             child: Column(
                               children: [
                                 Text(
-                                  "Id No : ${dataModel!.data[index].idNo!}",
+                                  "Id No : ${dataModel?.data[index].idNo ?? 0}",
                                   style: TextStyle(color: Colors.brown),
                                 ),
                                 SizedBox(
                                   height: 10,
                                 ),
                                 Text(
-                                  "Vat No : ${dataModel!.data[index].vatNo!}",
+                                  "Vat No : ${dataModel?.data[index].vatNo ?? 0}",
                                   style: TextStyle(color: Colors.brown),
                                 ),
                                 SizedBox(
                                   height: 10,
                                 ),
                                 Text(
-                                  "Reg No : ${dataModel!.data[index].regNo!}",
+                                  "Reg No : ${dataModel?.data[index].regNo ?? 0}",
                                   style: TextStyle(color: Colors.brown),
                                 ),
                                 SizedBox(
                                   height: 10,
                                 ),
                                 Text(
-                                  "Category : ${dataModel!.data[index].category!}",
+                                  "Category : ${dataModel?.data[index].category ?? 0}",
                                   style: TextStyle(color: Colors.brown),
                                 ),
                                 SizedBox(
                                   height: 10,
                                 ),
                                 Text(
-                                  "Bussiness Name : ${dataModel!.data[index].businessName!}",
+                                  "Bussiness Name : ${dataModel?.data[index].businessName ?? 0}",
                                   style: TextStyle(color: Colors.brown),
                                 ),
                                 SizedBox(
                                   height: 10,
                                 ),
                                 Text(
-                                  "Email :${dataModel!.data[index].email!}",
+                                  "Email :${dataModel?.data[index].email ?? 0}",
                                   style: TextStyle(color: Colors.brown),
                                 ),
                                 Text(
-                                  "Phone No : ${dataModel!.data[index].phone!}",
+                                  "Phone No : ${dataModel?.data[index].phone ?? 0}",
                                   style: TextStyle(color: Colors.brown),
                                 ),
                                 SizedBox(
                                   height: 10,
                                 ),
                                 Text(
-                                  "Note $index: ${dataModel!.data[index].note!}",
+                                  "Note $index: ${dataModel?.data[index].note ?? 0}",
                                   style: TextStyle(color: Colors.brown),
                                 ),
                                 SizedBox(
                                   height: 10,
                                 ),
                                 Image.network(
-                                  "$baseurl${dataModel!.data[index].backgroundImagePath!}",
+                                  "$baseurl${dataModel?.data[index].backgroundImagePath ?? 0}",
                                   height: 80,
                                   width: 80,
                                 ),
@@ -179,7 +198,7 @@ class _DashboardState extends State<Dashboard> {
                         : Text('');
                   },
                   separatorBuilder: (BuildContext context, int index) {
-                    return dataModel!.data[index].highlight == 0
+                    return dataModel?.data[index].highlight  == 0
                         ? SizedBox(
                             width: 12,
                           )
@@ -192,7 +211,9 @@ class _DashboardState extends State<Dashboard> {
               SizedBox(
                 height: 12,
               ),
-              Divider(height: 4,),
+              Divider(
+                height: 4,
+              ),
               SizedBox(
                 height: 6,
               ),
